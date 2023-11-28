@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Cadastro</title>
+
+    <h:outputStylesheet library="utils" name="estilo.css" />
+</h:head>
+
+<h:body>
+    <header style="text-align: center;">
+        <h:graphicImage library="utils" name="logo1.jpg"  />
+    </header>
+
+    <h:form id="usuarioForm" styleClass="centrado">
+
+        <f:metadata>
+            <f:viewAction action="#{gestaoUsuariosBean.todosUsuarios}" />
+        </f:metadata>
+
+        <p:toolbar id="toolbar">
+            <f:facet name="left">
+
+                <p:commandButton value="Nova" icon="fa fa-plus"
+                                 actionListener="#{gestaoUsuariosBean.resetUsuario}"
+                                 oncomplete="PF('usuarioDialogWidgetVar').show()"
+                                 update=":usuarioForm:usuarioDialog" process="@this">
+                    <p:resetInput target=":usuarioForm:usuarioDialog" />
+                </p:commandButton>
+
+            </f:facet>
+        </p:toolbar>
+
+        <p:spacer height="20px" />
+
+        <p:dataTable id="empresasDataTable" widgetVar="dataTable" value="#{gestaoUsuariosBean.listaUsuarios}"
+                     var="user" emptyMessage="Nenhuma informação a ser exibida"
+                     paginator="true" rows="10" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="5, 10, 20"
+                     selectionMode="single" selection="#{gestaoUsuariosBean.usuario}" rowKey="#{user.id}">
+
+            <p:column headerText="ID" sortBy="#{user.id}">
+                <h:outputText value="#{user.id}" />
+            </p:column>
+
+            <p:column headerText="Nome">
+                <h:outputText value="#{user.nome}" />
+            </p:column>
+
+            <p:column headerText="E-mail">
+                <h:outputText value="#{user.email}" />
+            </p:column>
+
+            <p:column headerText="CPF">
+                <h:outputText value="#{user.CPF}" />
+            </p:column>
+
+            <p:column headerText="Rua">
+                <h:outputText value="#{user.endereco.rua}" />
+            </p:column>
+
+            <p:column headerText="Cidade">
+                <h:outputText value="#{user.endereco.cidade}" />
+            </p:column>
+
+            <p:column headerText="UF">
+                <h:outputText value="#{user.endereco.UF}" />
+            </p:column>
+
+            <p:column>
+                <p:commandButton value="Excluir" action="#{gestaoUsuariosBean.excluir(user)}"
+                                 update=":usuarioForm:formDialog" oncomplete="PF('dialog').show();"
+                                 process="@this"/>
+            </p:column>
+
+            <p:column>
+                <p:commandButton title="Editar" icon="fa fa-edit"
+                                 actionListener="#{gestaoUsuariosBean.prepararEdicao(user)}"
+                                 oncomplete="PF('usuarioDialogWidgetVar').show()"
+                                 update=":usuarioForm:usuarioDialog" process="@this">
+                    <p:resetInput target=":usuarioForm:usuarioDialog" />
+                </p:commandButton>
+
+            </p:column>
+
+        </p:dataTable>
+
+        <p:dialog header="Excluir usuario" widgetVar="dialog" resizable="false" id="formDialog">
+            <p:commandButton value="OK" oncomplete="window.location.reload();" />
+            <p:commandButton value="Cancelar" oncomplete="PF('dialog').hide()" />
+        </p:dialog>
+
+        <p:dialog id="usuarioDialog" header="Usuário" widgetVar="usuarioDialogWidgetVar"
+                  modal="true" showEffect="fade" resizable="false" closeOnEscape="true">
+            <p:messages id="usuarioMessages" />
+
+            <p:defaultCommand target="salvarCommandButton" scope="usuarioDialog" />
+
+            <h:panelGrid id="usuarioPanelGrid" columns="2" styleClass="centered-content"
+                         rendered="#{gestaoUsuariosBean.usuario ne null}">
+
+                <p:outputLabel value="Nome: " for="nome"/>
+                <p:inputText value="#{gestaoUsuariosBean.usuario.nome}" id="nome"
+                             maxlength="100" required="true" requiredMessage="Campo obrigatório"  />
+
+                <p:outputLabel value="E-mail: " for="email"/>
+                <p:inputText value="#{gestaoUsuariosBean.usuario.email}" id="email"
+                             maxlength="100" required="true" requiredMessage="Campo obrigatório" />
+
+                <p:outputLabel value="CPF: " for="cpf"/>
+                <p:inputText value="#{gestaoUsuariosBean.usuario.CPF}" id="cpf"
+                             maxlength="11" required="true" requiredMessage="Campo obrigatório"  />
+
+                <p:outputLabel value="Rua: " for="rua"/>
+                <p:inputText value="#{gestaoUsuariosBean.usuario.endereco.rua}" id="rua"
+                             maxlength="100" required="true" requiredMessage="Campo obrigatório"  />
+
+                <p:outputLabel value="Número:" for="numero"/>
+                <p:inputText value="#{gestaoUsuariosBean.usuario.endereco.numero}" id="numero"
+                             required="true" requiredMessage="Campo obrigatório" maxlength="10">
+                    <f:convertNumber integerOnly="true" type="number" />
+                </p:inputText>
+
+                <p:outputLabel value="Cidade:" for="cidade"/>
+                <p:inputText value="#{gestaoUsuariosBean.usuario.endereco.cidade}" id="cidade"
+                             maxlength="100" required="true" requiredMessage="Campo obrigatório"  />
+
+                <p:outputLabel value="UF:" for="uf"/>
+                <p:inputText value="#{gestaoUsuariosBean.usuario.endereco.UF}" id="uf"
+                             maxlength="2" required="true" requiredMessage="Campo obrigatório"  />
+
+                <p:outputLabel value="Complemento:" for="complemento"/>
+                <p:inputText value="#{gestaoUsuariosBean.usuario.endereco.complemento}" id="complemento"
+                             maxlength="100" required="true" requiredMessage="Campo obrigatório"  />
+
+                <p:outputLabel value="CEP:" for="cep"/>
+                <p:inputText value="#{gestaoUsuariosBean.usuario.endereco.CEP}" id="cep"
+                             maxlength="8" required="true" requiredMessage="Campo obrigatório"  />
+
+                <p:commandButton id="salvarCommandButton" value="Salvar" actionListener="#{gestaoUsuariosBean.salvar}"
+                                 update="usuarioPanelGrid usuarioMessages"
+                                 oncomplete="if (!args.validationFailed) { PF('usuarioDialogWidgetVar').hide(); location.reload(); }"
+                                 process="usuarioDialog"
+                />
+            </h:panelGrid>
+        </p:dialog>
+
+    </h:form>
+
+</h:body>
+</html>
