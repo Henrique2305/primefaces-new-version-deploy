@@ -1,3 +1,5 @@
+package app;
+
 import javax.faces.webapp.FacesServlet;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
@@ -7,6 +9,7 @@ import org.apache.tomcat.util.scan.StandardJarScanner;
 public class MainApp {
 
     public static void main(String[] args) throws Exception {
+
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(8080);
 
@@ -19,5 +22,6 @@ public class MainApp {
 
         tomcat.start();
         tomcat.getServer().await();
+
     }
 }
