@@ -11,6 +11,11 @@ FROM tomcat:8-jre8
 
 EXPOSE 8080
 
-COPY --from=build target/jsf-demo-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/app.war
+# Copie o arquivo WAR para o diretório de implantação do Tomcat
+COPY target/jsf-demo-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/app.war
+
+# Configurar o arquivo index.xhtml como a página de início
+RUN mv /usr/local/tomcat/webapps/app.war /usr/local/tomcat/webapps/ROOT.war
 
 CMD ["catalina.sh", "run"]
+
