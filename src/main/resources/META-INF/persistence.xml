@@ -6,14 +6,14 @@
 >
 	<persistence-unit name="PostgresDB">
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="${DATABASE_URL}" />
-			<property name="javax.persistence.jdbc.user" value="${DATABASE_USER}" />
-			<property name="javax.persistence.jdbc.password" value="${DATABASE_PASSWORD}" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://postgres:5432/jsfdemo" />
+			<property name="javax.persistence.jdbc.user" value="jsfdemo"/>
+			<property name="javax.persistence.jdbc.password" value="jsfdemo_password"/>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 
 			<property name="javax.persistence.schema-generation.database.action" value="update" />
       		<property name="javax.persistence.schema-generation.create-source" value="metadata" />
-      		
+
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 		</properties>
