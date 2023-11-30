@@ -7,10 +7,10 @@ COPY . .
 RUN apt-get install maven -y
 RUN mvn clean install
 
-FROM openjdk:8-jdk-slim
+FROM tomcat:8-jre8
 
 EXPOSE 8080
 
-COPY --from=build target/jsf-demo-1.0-SNAPSHOT.war app.war
+COPY --from=build target/jsf-demo-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/app.war
 
-ENTRYPOINT ["java", "-jar", "app.war"]
+CMD ["catalina.sh", "run"]
