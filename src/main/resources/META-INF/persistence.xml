@@ -6,10 +6,6 @@
 >
 	<persistence-unit name="PostgresDB">
 		<properties>
-<!--			<property name="javax.persistence.jdbc.url" value="${DATABASE_URL}" />-->
-<!--			<property name="javax.persistence.jdbc.user" value="${DATABASE_USER}" />-->
-<!--			<property name="javax.persistence.jdbc.password" value="${DATABASE_PASSWORD}" />-->
-
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://monorail.proxy.rlwy.net:41605/railway" />
 			<property name="javax.persistence.jdbc.user" value="postgres"/>
 			<property name="javax.persistence.jdbc.password" value="22DCf46aCC5gbAFD145CDacG144d6aaG"/>
