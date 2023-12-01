@@ -10,9 +10,9 @@
 <!--			<property name="javax.persistence.jdbc.user" value="${DATABASE_USER}" />-->
 <!--			<property name="javax.persistence.jdbc.password" value="${DATABASE_PASSWORD}" />-->
 
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://viaduct.proxy.rlwy.net:15741/railway" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://monorail.proxy.rlwy.net:41605/railway" />
 			<property name="javax.persistence.jdbc.user" value="postgres"/>
-			<property name="javax.persistence.jdbc.password" value="6BF6G4Acc3BcC1c4g42geFbbb1DBeEG5"/>
+			<property name="javax.persistence.jdbc.password" value="22DCf46aCC5gbAFD145CDacG144d6aaG"/>
 
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 
