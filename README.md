@@ -6,7 +6,7 @@
 
 É um projeto simples de CRUD com Java e PrimeFaces.
 
-## ✔️ Tecnologias utilizadas
+## 🛠 Tecnologias
 
 - ``Java 8``
 - ``PrimeFaces``
