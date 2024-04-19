@@ -1,4 +1,5 @@
 # Projeto JSF com PrimeFaces
+![GitHub language count](https://img.shields.io/github/languages/count/Henrique2305/primefaces-new-version-deploy)
 ![GitHub top language](https://img.shields.io/github/languages/top/Henrique2305/primefaces-new-version-deploy)
 
 ## Descriçao
@@ -14,7 +15,7 @@
 
 ## Modo de uso
 
-Usei a IDE Intellij.
+Eu utilizei a IDE Intellij IDEA.
 
 Para rodar o projeto, use um servidor como o Tomcat. Eu usei a versão 9.0.60.
 
